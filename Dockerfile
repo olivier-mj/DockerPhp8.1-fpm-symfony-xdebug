@@ -48,7 +48,7 @@ RUN docker-php-ext-configure gd --with-freetype --with-jpeg; \
 	docker-php-ext-install intl; \
 	docker-php-ext-install zip; \
 	docker-php-ext-install exif; \
-	docker-php-ext-enable imagick mcrypt redis; \
+	docker-php-ext-enable mcrypt redis; \
 	docker-php-ext-install bcmath;
 
 RUN docker-php-source extract; \
@@ -81,7 +81,7 @@ RUN wget https://get.symfony.com/cli/installer -O - | bash
 
 # Xdebug (disabled by default, but installed if required)
  RUN pecl install xdebug-3.0.3 && docker-php-ext-enable xdebug
- ADD xdebug.ini /usr/local/etc/php/conf.d/
+ ADD ./xdebug.ini /usr/local/etc/php/conf.d/
 
 WORKDIR /var/www
 
