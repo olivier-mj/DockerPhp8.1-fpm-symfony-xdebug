@@ -1,4 +1,4 @@
-FROM php:8.0-fpm
+FROM php:8.0.8-fpm
 LABEL maintainer="contact@oliviermariejoseph.fr"
 
 
@@ -8,7 +8,7 @@ ENV EXT_APCU_VERSION=${VERSION}
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
         git\
-		imagemagick \
+		libmagickwand-dev  \
 		less \
 		mariadb-client msmtp \
 		libc-client-dev \
@@ -26,9 +26,14 @@ RUN apt-get update && \
 		libssl-dev \
 		unzip \
 		vim \
-		zip
-RUN pecl install imagick; \
-	pecl install memcached; \
+		zip \
+		&& rm -rf /var/lib/apt/lists/*
+
+RUN mkdir -p /usr/src/php/ext/imagick; \
+    curl -fsSL https://github.com/Imagick/imagick/archive/06116aa24b76edaf6b1693198f79e6c295eda8a9.tar.gz | tar xvz -C "/usr/src/php/ext/imagick" --strip 1; \
+    docker-php-ext-install imagick;
+
+RUN pecl install memcached; \
 	pecl install mcrypt-1.0.3; \
 	pecl install redis;
 
