@@ -1,4 +1,4 @@
-FROM php:8.0.8-fpm
+FROM php:8.0.11-fpm
 LABEL maintainer="contact@oliviermariejoseph.fr"
 
 
