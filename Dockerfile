@@ -4,6 +4,7 @@ LABEL maintainer="contact@oliviermariejoseph.fr"
 
 ARG VERSION=5.1.20
 ENV EXT_APCU_VERSION=${VERSION}
+ENV PHP_SECURITY_CHECHER_VERSION=1.0.0
 
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
@@ -27,6 +28,7 @@ RUN apt-get update && \
 		unzip \
 		vim \
 		zip \
+		wget \
 		&& rm -rf /var/lib/apt/lists/*
 
 RUN mkdir -p /usr/src/php/ext/imagick; \
