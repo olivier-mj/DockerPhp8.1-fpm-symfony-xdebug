@@ -33,7 +33,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Discord Message Notify for succes
-      if: ${{ success() }} == success()
+      if: ${{ success() }} 
       uses: appleboy/discord-action@0.0.3
       with:
         webhook_id: ${{ secrets.WEBHOOK_ID }}
@@ -43,7 +43,7 @@ jobs:
         message: ${{ github.repository }} has been constructed and published on Dockerhub
 
     - name: Discord Message Notify for failed
-      if: ${{ failure() }} == failure()
+      if: ${{ failure() }}
       uses: appleboy/discord-action@0.0.3
       with:
         webhook_id: ${{ secrets.WEBHOOK_ID }}
