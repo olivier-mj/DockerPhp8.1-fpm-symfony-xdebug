@@ -41,7 +41,7 @@ jobs:
         message: ${{ github.repository }} has been constructed and published on Dockerhub
 
     - name: Discord Message Notify for failed
-      if: steps.build.outcome == failure()
+      if: steps.build.outcome != success()
       uses: appleboy/discord-action@0.0.3
       with:
         webhook_id: ${{ secrets.WEBHOOK_ID }}
