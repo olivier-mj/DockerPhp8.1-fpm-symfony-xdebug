@@ -28,10 +28,10 @@ jobs:
         context: .
         push: true
         tags: oliviermj/php8.0-fpm-dev-symfony-xdebug:latest
-      continue-on-error: true
+      continue-on-error: false
       
     - name: Discord Message Notify for succes
-      if: steps.build.outcome == success()
+      if: steps.build.conclusion == success()
       uses: appleboy/discord-action@0.0.3
       with:
         webhook_id: ${{ secrets.WEBHOOK_ID }}
@@ -41,7 +41,7 @@ jobs:
         message: ${{ github.repository }} has been constructed and published on Dockerhub
 
     - name: Discord Message Notify for failed
-      if: steps.build.outcome == failure()
+      if: steps.build.conclusion == failure()
       uses: appleboy/discord-action@0.0.3
       with:
         webhook_id: ${{ secrets.WEBHOOK_ID }}
