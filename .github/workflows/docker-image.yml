@@ -30,8 +30,8 @@ jobs:
 
     - name: Discord Message Notify
       uses: appleboy/discord-action@0.0.3
-      webhook_id: ${{ secrets.DISCORD_WEBHOOK_ID }}
-      webhook_token: ${{ secrets.DISCORD_WEBHOOK_TOKEN }}
+      webhook_id: ${{ secrets.WEBHOOK_ID }}
+      webhook_token: ${{ secrets.WEBHOOK_TOKEN }}
       message: Image has been constructed and published on Dockerhub
 
 
