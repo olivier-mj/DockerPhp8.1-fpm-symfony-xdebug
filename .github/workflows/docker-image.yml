@@ -30,11 +30,11 @@ jobs:
         tags: oliviermj/php8.0-fpm-dev-symfony-xdebug:latest
 
   notify:
-    name: Build
+    name: Notify
     runs-on: ubuntu-latest
     steps:
       - name: Discord Message Notify for succes
-        if: job.steps.build.status == "succes"
+        if: job.steps.build.status == "success"
         uses: appleboy/discord-action@0.0.3
         with:
           webhook_id: ${{ secrets.WEBHOOK_ID }}
