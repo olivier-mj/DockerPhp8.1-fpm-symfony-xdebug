@@ -28,29 +28,36 @@ jobs:
         tags: oliviermj/php8.0-fpm-dev-symfony-xdebug:latest
       continue-on-error: true
 
-  notify:
+  notify_ok:
     name: Notify
     runs-on: ubuntu-latest
+    needs: [build]
+    if: needs.build == "success"
     steps:
     - name: Discord Message Notify for succes
-      if: ${{ success() }} 
       uses: appleboy/discord-action@0.0.3
       with:
         webhook_id: ${{ secrets.WEBHOOK_ID }}
         webhook_token: ${{ secrets.WEBHOOK_TOKEN }}
         color: "#48f442"
         username: "GitHub Bot"
-        message: ${{ github.repository }} has been constructed and published on Dockerhub
+        message: ${{ github.repository }} has been builded and pushed on Dockerhub
 
+  notify_ko:
+    name: Notify
+    runs-on: ubuntu-latest
+    needs: [build]
+    if: needs.build == "failure"
+    steps:
     - name: Discord Message Notify for failed
-      if: ${{ failure() }}
+      if: steps.build.conclusion == failure()
       uses: appleboy/discord-action@0.0.3
       with:
         webhook_id: ${{ secrets.WEBHOOK_ID }}
         webhook_token: ${{ secrets.WEBHOOK_TOKEN }}
         color: "#d42405"
         username: "GitHub Bot"
-        message: Build failed
+        message: Build has failed
       
 
 
