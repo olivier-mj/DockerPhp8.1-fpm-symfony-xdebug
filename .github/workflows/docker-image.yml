@@ -33,22 +33,22 @@ jobs:
     - name: Discord Message Notify for succes
       if: steps.build.status == "success"
       uses: appleboy/discord-action@0.0.3
-        with:
-          webhook_id: ${{ secrets.WEBHOOK_ID }}
-          webhook_token: ${{ secrets.WEBHOOK_TOKEN }}
-          color: "#48f442"
-          username: "GitHub Bot"
-          message: ${{ github.repository }} has been constructed and published on Dockerhub
+      with:
+        webhook_id: ${{ secrets.WEBHOOK_ID }}
+        webhook_token: ${{ secrets.WEBHOOK_TOKEN }}
+        color: "#48f442"
+        username: "GitHub Bot"
+        message: ${{ github.repository }} has been constructed and published on Dockerhub
 
     - name: Discord Message Notify for failed
       if: steps.build.status != "success"
       uses: appleboy/discord-action@0.0.3
-        with:
-          webhook_id: ${{ secrets.WEBHOOK_ID }}
-          webhook_token: ${{ secrets.WEBHOOK_TOKEN }}
-          color: "#48f442"
-          username: "GitHub Bot"
-          message: Build failed
+      with:
+        webhook_id: ${{ secrets.WEBHOOK_ID }}
+        webhook_token: ${{ secrets.WEBHOOK_TOKEN }}
+        color: "#48f442"
+        username: "GitHub Bot"
+        message: Build failed
       
 
 
