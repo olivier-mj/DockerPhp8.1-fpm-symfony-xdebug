@@ -31,7 +31,7 @@ jobs:
 
       if: job.steps.build.status == "success"
     - name: Discord Message Notify for succes
-        uses: appleboy/discord-action@0.0.3
+      uses: appleboy/discord-action@0.0.3
         with:
           webhook_id: ${{ secrets.WEBHOOK_ID }}
           webhook_token: ${{ secrets.WEBHOOK_TOKEN }}
@@ -39,9 +39,9 @@ jobs:
           username: "GitHub Bot"
           message: ${{ github.repository }} has been constructed and published on Dockerhub
 
-    if: job.steps.build.status != "failed"
+      if: job.steps.build.status != "failed"
     - name: Discord Message Notify for failed
-        uses: appleboy/discord-action@0.0.3
+      uses: appleboy/discord-action@0.0.3
         with:
           webhook_id: ${{ secrets.WEBHOOK_ID }}
           webhook_token: ${{ secrets.WEBHOOK_TOKEN }}
