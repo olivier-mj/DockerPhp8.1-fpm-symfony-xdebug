@@ -7,7 +7,6 @@ Php:8.0.8-fpm for dev
 - nano
 - composer
 - symfony
-- ffmpeg
 
 ## Extensions
 
@@ -18,3 +17,5 @@ Php:8.0.8-fpm for dev
 - xdebug
 - pdo 
 - pdo_mysql
+- opchace
+- apcu
