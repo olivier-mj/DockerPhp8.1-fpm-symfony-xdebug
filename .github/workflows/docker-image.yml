@@ -22,17 +22,26 @@ jobs:
         password: ${{ secrets.DOCKER_PASSWORD }}
    
     - name: Build & Push to DockerHub
+      id: build
       uses: docker/build-push-action@v2
       with:
         context: .
         push: true
         tags: oliviermj/php8.0-fpm-dev-symfony-xdebug:latest
 
-    - name: Discord Message Notify
-      uses: appleboy/discord-action@0.0.3
-      with:
-        webhook_id: ${{ secrets.WEBHOOK_ID }}
-        webhook_token: ${{ secrets.WEBHOOK_TOKEN }}
-        message: Image ${{ github.event_name }} has been constructed and published on Dockerhub
+  notify:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Discord Message Notify for succes
+        if: job.steps.build.status == "succes"
+        uses: appleboy/discord-action@0.0.3
+        with:
+          webhook_id: ${{ secrets.WEBHOOK_ID }}
+          webhook_token: ${{ secrets.WEBHOOK_TOKEN }}
+          color: "#48f442"
+          username: "GitHub Bot"
+          message: ${{ github.repository }} has been constructed and published on Dockerhub
+      
 
 
