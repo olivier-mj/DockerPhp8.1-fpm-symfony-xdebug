@@ -49,6 +49,7 @@ RUN docker-php-ext-configure gd --with-freetype --with-jpeg; \
 	docker-php-ext-install soap; \
 	docker-php-ext-install intl; \
 	docker-php-ext-install zip; \
+	docker-php-ext-enable zip \
 	docker-php-ext-install exif; \
 	docker-php-ext-enable mcrypt redis; \
 	docker-php-ext-install bcmath;
