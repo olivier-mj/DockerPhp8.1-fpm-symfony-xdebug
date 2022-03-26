@@ -1,4 +1,4 @@
-Php:8.0.13-fpm for dev
+Php:8.1.4-fpm for dev
 
 ## Outils
 
@@ -7,15 +7,19 @@ Php:8.0.13-fpm for dev
 - nano
 - composer
 - symfony
+- php-security-checker
 
 ## Extensions
 
-- zip 
+- zip
 - intl
 - redis
 - imagick
 - xdebug
-- pdo 
+- pdo
 - pdo_mysql
-- opchace
+- pdo_pgsql
+- opcache
 - apcu
+- memcached
+- mcrypt
