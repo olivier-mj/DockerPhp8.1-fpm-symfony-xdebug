@@ -11,12 +11,13 @@ RUN apt-get update && \
 	vim \
 	zip \
 	wget \
+	msmtp \
 	&& rm -rf /var/lib/apt/lists/*
 
 ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
 
 RUN chmod +x /usr/local/bin/install-php-extensions && \
-	install-php-extensions imagick gd  xdebug  pdo_mysql pdo_pgsql zip redis exif memcached mcrypt intl apcu opcache  msmtp
+	install-php-extensions imagick gd  xdebug  pdo_mysql pdo_pgsql zip redis exif memcached mcrypt intl apcu opcache  
 
 # Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin/ --filename=composer
