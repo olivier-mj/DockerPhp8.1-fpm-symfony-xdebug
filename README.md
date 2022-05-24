@@ -23,3 +23,4 @@ Php:8.1.4-fpm for dev
 - apcu
 - memcached
 - mcrypt
+- msmtp

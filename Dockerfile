@@ -16,7 +16,7 @@ RUN apt-get update && \
 ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
 
 RUN chmod +x /usr/local/bin/install-php-extensions && \
-	install-php-extensions imagick gd  xdebug  pdo_mysql pdo_pgsql zip redis exif memcached mcrypt intl apcu opcache
+	install-php-extensions imagick gd  xdebug  pdo_mysql pdo_pgsql zip redis exif memcached mcrypt intl apcu opcache  msmtp
 
 # Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin/ --filename=composer
@@ -32,8 +32,13 @@ RUN curl -L https://github.com/fabpot/local-php-security-checker/releases/downlo
 # Xdebug (disabled by default, but installed if required)
 # RUN pecl install xdebug-3.0.3 && docker-php-ext-enable xdebug
 
+COPY msmtprc /etc/msmtprc
+RUN chmod 600 /etc/msmtprc
+
 # ADD xdebug.ini /usr/local/etc/php/conf.d/
-# ADD php.ini /usr/local/etc/php/conf.d/
+ADD php.ini /usr/local/etc/php/conf.d/
+
+
 
 WORKDIR /var/www
 
