@@ -11,7 +11,6 @@ RUN apt-get update && \
 	vim \
 	zip \
 	wget \
-	msmtp \
 	&& rm -rf /var/lib/apt/lists/*
 
 ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
@@ -33,8 +32,6 @@ RUN curl -L https://github.com/fabpot/local-php-security-checker/releases/downlo
 # Xdebug (disabled by default, but installed if required)
 # RUN pecl install xdebug-3.0.3 && docker-php-ext-enable xdebug
 
-COPY msmtprc /etc/msmtprc
-RUN chmod 600 /etc/msmtprc
 
 # ADD xdebug.ini /usr/local/etc/php/conf.d/
 ADD php.ini /usr/local/etc/php/conf.d/
